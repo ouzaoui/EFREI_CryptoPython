@@ -7,7 +7,7 @@ import sqlite3
 app = Flask(__name__)                                                                                                                  
                                                                                                                                        
 @app.route('/')
-@app.route("/fr/")
+
 def monfr():
     return "<h2>Bonjour tout le monde !</h2>"
 def hello_world():
