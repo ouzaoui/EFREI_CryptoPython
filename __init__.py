@@ -1,6 +1,8 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template_string, render_template, jsonify
+from flask import render_template
+from flask import json
 from urllib.request import urlopen
-import json
+import sqlite3
 
 app = Flask(__name__)
 
