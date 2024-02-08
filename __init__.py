@@ -52,7 +52,7 @@ def mongraphique():
 
     return render_template("graphique.html")
  
-@app.route('/histogramme')
+@app.route('/histogramme/')
 
 def histogramme():
 
@@ -104,7 +104,8 @@ def Searchebyname(post_nom):
 
     cursor = conn.cursor()
 
-    cursor.execute('SELECT * FROM clients WHERE nom LIKE ?', (post_nom,))
+    param = "%" + name + "%"
+    cursor.execute('SELECT * FROM clients WHERE nom LIKE ?', (param,))
 
     data = cursor.fetchall()
 
@@ -150,7 +151,16 @@ def ajouter_client():
  
  
                                                                                                                                        
-
+@app.route('/fiche_client/<int:post_id>')
+def Readfiche(post_id):
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM clients WHERE id = ?', (post_id,))
+    data = cursor.fetchall()
+    conn.close()
+    
+    # Rendre le template HTML et transmettre les données
+    return render_template('read_data.html', data=data)
 if __name__ == "__main__":
 
   app.run(debug=True)
