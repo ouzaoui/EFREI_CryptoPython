@@ -10,7 +10,7 @@ app = Flask(__name__)
 @app.route("/contact/")
 def MaPremiereAPI():
     return "<h2>Ma page de contact</h2>"
-## Défincition de la route pour la page des prévisions météorologique de Paris pour les 16 prochains jours.
+## Définition de la route pour la page des prévisions météorologique de Paris pour les 16 prochains jours.
 @app.route('/paris/')
 def meteo():
     response = urlopen('https://api.openweathermap.org/data/2.5/forecast/daily?q=Paris,fr&cnt=16&appid=bd5e378503939ddaee76f12ad7a97608')
