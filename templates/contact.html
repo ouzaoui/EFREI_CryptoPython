@@ -1,1 +1,69 @@
-
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Contactez-nous</h2>
+        <form action="/submit_message" method="post">
+            <label for="fname">Prénom :</label>
+            <input type="text" id="fname" name="fname" placeholder="Votre prénom.." required>
+            
+            <label for="lname">Nom :</label>
+            <input type="text" id="lname" name="lname" placeholder="Votre nom.." required>
+            
+            <label for="message">Message :</label>
+            <textarea id="message" name="message" placeholder="Votre message.." style="height:150px" required></textarea>
+            
+            <input type="submit" value="Envoyer">
+        </form>
+    </div>
+</body>
+</html>
