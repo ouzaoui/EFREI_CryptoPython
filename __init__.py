@@ -7,7 +7,15 @@ import sqlite3
                                                                                                                                        
 app = Flask(__name__)
 # Définition de la route pour la page de contact
-@app.route("/contact/")
+
+                                                                                                                                       
+@app.route('/')
+def hello_world():
+    return render_template('hello.html') #comm
+  
+if __name__ == "__main__":
+  app.run(debug=True)
+  @app.route("/contact/")
 def contact():
     return render_template("contact.html")
 ## Définition de la route pour la page des prévisions météorologique de Paris pour les 16 prochains jours.
@@ -50,10 +58,3 @@ def commits():
     commits_data = [{'minute': minute, 'commits': commits_per_minute[minute]} for minute in sorted(commits_per_minute.keys())] # Création d'une liste de tuples (minute, nombre de commits)
     return jsonify({'commits_data': commits_data}) # Retourner les données au format JSON
 
-                                                                                                                                       
-@app.route('/')
-def hello_world():
-    return render_template('hello.html') #comm
-  
-if __name__ == "__main__":
-  app.run(debug=True)
