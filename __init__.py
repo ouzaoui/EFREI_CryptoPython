@@ -8,8 +8,8 @@ import sqlite3
 app = Flask(__name__)
 # Définition de la route pour la page de contact
 @app.route("/contact/")
-def MaPremiereAPI():
-    return "<h2>Ma page de contact</h2>"
+def contact():
+    return render_template("contact.html")
 ## Définition de la route pour la page des prévisions météorologique de Paris pour les 16 prochains jours.
 @app.route('/paris/')
 def meteo():
