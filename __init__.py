@@ -30,26 +30,26 @@ def meteo():
 return render_template("graphique.html")
 #-------------------------------------   
 # Définition de la route histogramme
-@app.route("/histogramme/")
-def histogramme():
+#@app.route("/histogramme/")
+#def histogramme():
     # Récupérer les données de l'API OpenWeatherMap
-    url = 'https://samples.openweathermap.org/data/2.5/forecast?lat=0&lon=0&appid=xxx'
-    response = requests.get(url)
-    data = response.json()
+ #   url = 'https://samples.openweathermap.org/data/2.5/forecast?lat=0&lon=0&appid=xxx'
+  #  response = requests.get(url)
+   # data = response.json()
     # Extraire les températures
-    temperatures = [item['main']['temp'] for item in data['list']]
+    #temperatures = [item['main']['temp'] for item in data['list']]
     # Créer les données au format Google Charts
-    data_table = [['Température', 'Fréquence']]
-    temperature_counts = {}
-    for temp in temperatures:
-        temp = round(temp)
-        if temp in temperature_counts:
-            temperature_counts[temp] += 1
-        else:
-            temperature_counts[temp] = 1
-    for temp, count in temperature_counts.items():
-        data_table.append([str(temp), count])
-    return render_template('histogramme.html', data_table=data_table)
+    #data_table = [['Température', 'Fréquence']]
+    #temperature_counts = {}
+    #for temp in temperatures:
+     #   temp = round(temp)
+      #  if temp in temperature_counts:
+           # temperature_counts[temp] += 1
+     #   else:
+        #    temperature_counts[temp] = 1
+   # for temp, count in temperature_counts.items():
+      #  data_table.append([str(temp), count])
+   # return render_template('histogramme.html', data_table=data_table)
 #-------------------------------------    
 # Route pour extraire les minutes d'une information formatée
 @app.route('/extract-minutes/<date_string>')
