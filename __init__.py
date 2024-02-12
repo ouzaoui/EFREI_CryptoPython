@@ -10,7 +10,7 @@ app = Flask(__name__)
 @app.route("/contact/")
 def contact():
     return render_template("contact.html")
-## Définition de la route pour la page des prévisions météorologique de Paris pour les 16 prochains jours.
+# Définition de la route pour la page des prévisions météorologique de Paris pour les 16 prochains jours.
 @app.route("/paris/")
 def meteo():
     response = urlopen('https://samples.openweathermap.org/data/2.5/forecast?lat=0&lon=0&appid=xxx')
@@ -22,7 +22,7 @@ def meteo():
         temp_day_value = list_element.get('main', {}).get('temp') - 273.15 # Conversion de Kelvin en °c
         results.append({'Jour': dt_value, 'temp': temp_day_value})
     return jsonify(results=results)
-## Définition de la route rapport
+# Définition de la route rapport
 @app.route("/histogramme/")
 def mongraphique():
     return render_template("graphique.html")
@@ -48,8 +48,7 @@ def commits():
         else:
             commits_per_minute[minute] = 1
     commits_data = [{'minute': minute, 'commits': commits_per_minute[minute]} for minute in sorted(commits_per_minute.keys())] # Création d'une liste de tuples (minute, nombre de commits)
-    return jsonify({'commits_data': commits_data}) # Retourner les données au format JSON
-                                                                                                                                       
+    return jsonify({'commits_data': commits_data}) # Retourner les données au format JSON                                                                                                                                       
 @app.route('/')
 def hello_world():
     return render_template('hello.html') #comm
