@@ -1,4 +1,4 @@
-from flask import Flask, render_template_string, render_template, jsonify, requets
+from flask import Flask, render_template_string, render_template, jsonify, requests
 from flask import render_template
 from flask import json
 from datetime import datetime
@@ -32,7 +32,6 @@ def extract_minutes(date_string):
     date_object = datetime.strptime(date_string, '%Y-%m-%dT%H:%M:%SZ')
     minutes = date_object.minute
     return jsonify({'minutes': minutes})
-
 # Route pour récupérer les commits minute par minute
 @app.route('/commits/')
 def commits():
