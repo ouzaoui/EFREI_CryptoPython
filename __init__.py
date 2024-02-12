@@ -1,4 +1,4 @@
-from flask import Flask, render_template_string, render_template, jsonify
+from flask import Flask, render_template_string, render_template, jsonify, requets
 from flask import render_template
 from flask import json
 from datetime import datetime
@@ -26,6 +26,30 @@ def meteo():
 @app.route("/histogramme/")
 def mongraphique():
     return render_template("graphique.html")
+# Route pour extraire les minutes d'une information formatée
+@app.route('/extract-minutes/<date_string>')
+def extract_minutes(date_string):
+    date_object = datetime.strptime(date_string, '%Y-%m-%dT%H:%M:%SZ')
+    minutes = date_object.minute
+    return jsonify({'minutes': minutes})
+
+# Route pour récupérer les commits minute par minute
+@app.route('/commits/')
+def commits():
+    url = 'https://api.github.com/repos/OpenRSI/5MCSI_Metriques/commits' # URL de l'API GitHub pour les commits du repository
+    response = requests.get(url)
+    data = response.json()
+    commits_per_minute = {} # Initialisation d'un dictionnaire pour compter les commits par minute
+    # Parcours des commits pour compter les occurrences par minute
+    for commit in data:
+        commit_date = commit['commit']['author']['date']
+        minute = extract_minutes(commit_date)['minutes']
+        if minute in commits_per_minute:
+            commits_per_minute[minute] += 1
+        else:
+            commits_per_minute[minute] = 1
+    commits_data = [{'minute': minute, 'commits': commits_per_minute[minute]} for minute in sorted(commits_per_minute.keys())] # Création d'une liste de tuples (minute, nombre de commits)
+    return jsonify({'commits_data': commits_data}) # Retourner les données au format JSON
 
                                                                                                                                        
 @app.route('/')
